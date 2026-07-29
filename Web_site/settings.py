@@ -25,19 +25,21 @@ SECRET_KEY = 'django-insecure-rabr6$vhs123at&lm5w22whnh^g#e9!4929q292#@^$8p^1ii6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
+AUTH_USER_MODEL = "AccessSystem.MyUser"
 
 # Application definition
 
 INSTALLED_APPS = [
-    'Access_system.apps.AccessSystemConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'AccessSystem',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -49,6 +51,19 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
+
+# SIMPLE_JWT = {
+#     'TOKEN_OBTAIN_SERIALIZER': 'AccessSystem.serializers.MyTokenObtainPairSerializer'
+# }
 
 ROOT_URLCONF = 'Web_site.urls'
 
