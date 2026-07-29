@@ -1,4 +1,4 @@
-from rest_framework.serializers import ModelSerializer, ChoiceField, BooleanField
+from rest_framework.serializers import ModelSerializer, CharField, BooleanField
 from rest_framework_simplejwt.models import TokenUser
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from django.contrib.auth.models import AbstractBaseUser
@@ -29,9 +29,10 @@ class UserSerializer(ModelSerializer):
         fields = ['email', 'name', 'surname', 'patronymic', 'password', 'groups']
 
 class NewUserSerializer(ModelSerializer):
+    repeat_password = CharField()
     class Meta:
         model = MyUser
-        fields = ['email', 'name', 'surname', 'patronymic', 'password']
+        fields = ['email', 'name', 'surname', 'patronymic', 'password', 'repeat_password']
 
 class LoginSerializer(ModelSerializer):
     class Meta:

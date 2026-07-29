@@ -1,6 +1,5 @@
 from django import forms
 from django.contrib import admin
-from django.contrib.auth.models import Group, Permission
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.core.exceptions import ValidationError
@@ -46,12 +45,12 @@ class UserAdmin(BaseUserAdmin):
     form = UserChangeForm
     add_form = UserCreationForm
 
-    list_display = ['email', 'name', 'surname', 'patronymic']
+    list_display = ['email', 'name', 'surname', 'patronymic', 'is_active', 'get_group_permissions']
     list_filter = ['is_superuser']
     fieldsets = [
         (None, {'fields': ['email', 'password']}),
         ('Personal info', {'fields': ['name', 'surname', 'patronymic']}),
-        ('Permissions', {'fields': ['is_superuser', 'is_active']})
+        ('Permissions', {'fields': ['is_superuser', 'is_active', 'groups']})
     ]
     add_fieldsets = [(None, {
         'classes': ['wide'],

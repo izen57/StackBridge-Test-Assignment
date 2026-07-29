@@ -54,12 +54,6 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
     def is_staff(self):
         return self.is_superuser
 
-    # class Meta:
-    #     permissions = (
-    #         ('create_user', 'Создание новых пользователей. Доступно только администраторам.'),
-    #         ('delete_user', '«Удаление» пользователя. Фактически ставится отметка о том, что учётная запись стала не активна, и зайти в неё не получится. Администраторы могут помечать неактивными любые учётные записи.')
-    #     )
-
     def __str__(self):
         return f'{self.name} {self.patronymic} {self.surname} <{self.email}>'
 
